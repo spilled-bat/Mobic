@@ -346,6 +346,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
       <button class="week-btn" onclick="changeWeek(1)">›</button>
     </div>
     <button class="btn-secondary" onclick="goToCurrentWeek()">Cette semaine</button>
+        <button class="btn-secondary" onclick="duplicateWeekType()">Dupliquer la semaine type</button>
     <button class="btn-primary" id="btnRefreshEdt" onclick="refreshEdt()">Mettre à jour EDT</button>
     <div class="tab-toggle" style="margin-left:auto">
       <button class="tab-btn active" id="tabGrille" onclick="switchEdtTab('grille')">Grille</button>
@@ -371,7 +372,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
   </div>
   <div id="edtSaisie" style="display:none">
     <div class="panel">
-      <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;vertical-align:middle;margin-right:6px"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Ajouter un cours</h3><p>Renseignez les informations de votre cours.</p>
+      <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;vertical-align:middle;margin-right:6px"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Ajouter un cours</h3><p>Renseignez les informations de votre cours. Une fois ajouté en récurrence <strong>hebdomadaire</strong>, il reste enregistré définitivement, semaine après semaine, jusqu'à ce que vous le supprimiez vous-même.</p>
       <div class="form-row">
         <div class="form-group" style="flex:2;min-width:130px"><label>Matière *</label><input type="text" id="courseMatiere" placeholder="ex : Mathématiques"></div>
         <div class="form-group" style="flex:1;min-width:110px"><label>Professeur</label><input type="text" id="courseTeacher" placeholder="ex : M. Dupont"></div>
@@ -830,6 +831,15 @@ function renderEdt(){
         col.appendChild(div);
       });
   }
+}
+
+function duplicateWeekType(){
+  // Convertit tous les cours "une seule fois" de la semaine affichée en cours permanents (hebdomadaires)
+  const onceCourses = S.courses.filter(c => c.recurrence === 'once' && c.weekOffset === S.currentWeekOffset);
+  if(!onceCourses.length){ toast('Aucun cours ponctuel à convertir cette semaine'); return; }
+  if(!confirm(`Transformer ${onceCourses.length} cours de cette semaine en semaine type permanente ?`)) return;
+  onceCourses.forEach(c => { c.recurrence = 'weekly'; });
+  save(); renderEdt(); renderCourseList(); toast('Semaine type enregistrée définitivement ✓');
 }
 
 function changeWeek(d){S.currentWeekOffset+=d;renderEdt();}
