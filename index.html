@@ -250,39 +250,13 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
   .devoirs-layout{grid-template-columns:1fr}
   .ue-grid{grid-template-columns:1fr}
 }
-
-/* ── PASSWORD GATE ── */
-#pwdGate {
-  position: fixed; inset: 0; background: var(--g700);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 2000; padding: 20px;
-}
-.pwd-box {
-  background: #fff; border-radius: 16px; padding: 32px 28px;
-  width: 360px; max-width: 100%; box-shadow: var(--sh-lg); text-align: center;
-}
-.pwd-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 18px; }
-.pwd-logo-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--acc); display: flex; align-items: center; justify-content: center; font-family: 'Caveat', cursive; font-size: 24px; font-weight: 700; color: var(--g900); }
-.pwd-logo-name { font-family: 'Caveat', cursive; font-size: 30px; font-weight: 700; color: var(--g700); }
-.pwd-box input { width: 100%; padding: 10px 14px; font-size: 15px; text-align: center; border: 1.5px solid var(--line); border-radius: 9px; outline: none; margin-bottom: 14px; font-family: 'Inter', sans-serif; }
-.pwd-box input:focus { border-color: var(--g500); }
-.pwd-insult { font-weight: 700; color: var(--red); font-size: 14px; min-height: 22px; margin-bottom: 10px; line-height: 1.35; }
-#app.pwd-locked { display: none; }
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
 </style>
 </head>
 <body>
-<div id="pwdGate">
-  <div class="pwd-box">
-    <div class="pwd-logo"><div class="pwd-logo-badge">M</div><div class="pwd-logo-name">MOBIC</div></div>
-    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off" onkeydown="if(event.key==='Enter')checkPwd()">
-    <div class="pwd-insult" id="pwdInsult"></div>
-    <button class="btn-primary" style="width:100%;padding:10px" onclick="checkPwd()">Entrer</button>
-  </div>
-</div>
-<div id="app" class="pwd-locked">
+<div id="app">
 <div id="sidebar-overlay" onclick="closeMobileSidebar()"></div>
 <aside id="sidebar">
   <div class="sb-logo">
@@ -717,26 +691,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     <div class="form-group" style="margin-bottom:11px"><label>Matière *</label><input type="text" id="devoirMatiere" placeholder="ex : Mathématiques"></div>
     <div class="form-group" style="margin-bottom:11px"><label>Description *</label><textarea id="devoirDesc" rows="3" placeholder="ex : Exercices p.42 — 1 à 5" style="resize:vertical"></textarea></div>
     <div class="form-group" style="margin-bottom:11px"><label>Date limite *</label><input type="date" id="devoirDate"></div>
-    <div class="form-group" style="margin-bottom:11px"><label>Urgence</label><select id="devoirUrgence"><option value="low">Normal</option><option value="mid">Important</option><option value="high">Urgent</option></select></div>
-    <div class="form-group"><label>Couleur</label>
-      <div class="color-presets" id="devoirColorPresets">
-        <div class="color-preset active" style="background:#e63946" data-color="#e63946"></div>
-        <div class="color-preset" style="background:#f4862b" data-color="#f4862b"></div>
-        <div class="color-preset" style="background:#f0c419" data-color="#f0c419"></div>
-        <div class="color-preset" style="background:#8bc34a" data-color="#8bc34a"></div>
-        <div class="color-preset" style="background:#2d8a3e" data-color="#2d8a3e"></div>
-        <div class="color-preset" style="background:#16a085" data-color="#16a085"></div>
-        <div class="color-preset" style="background:#1fb6c9" data-color="#1fb6c9"></div>
-        <div class="color-preset" style="background:#2196f3" data-color="#2196f3"></div>
-        <div class="color-preset" style="background:#3949ab" data-color="#3949ab"></div>
-        <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-        <div class="color-preset" style="background:#a855f7" data-color="#a855f7"></div>
-        <div class="color-preset" style="background:#d946a8" data-color="#d946a8"></div>
-        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-        <div class="color-preset" style="background:#8d6e63" data-color="#8d6e63"></div>
-        <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-      </div>
-    </div>
+    <div class="form-group"><label>Urgence</label><select id="devoirUrgence"><option value="low">Normal</option><option value="mid">Important</option><option value="high">Urgent</option></select></div>
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeModal('devoirModal')">Annuler</button>
       <button class="btn-primary" onclick="saveDevoir()">Enregistrer</button>
@@ -814,32 +769,6 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
-<div class="modal-overlay" id="devoirColorModal">
-  <div class="modal" style="width:340px">
-    <div class="modal-title">Couleur du devoir</div>
-    <div class="color-presets" id="devoirEditColorPresets">
-      <div class="color-preset active" style="background:#e63946" data-color="#e63946"></div>
-      <div class="color-preset" style="background:#f4862b" data-color="#f4862b"></div>
-      <div class="color-preset" style="background:#f0c419" data-color="#f0c419"></div>
-      <div class="color-preset" style="background:#8bc34a" data-color="#8bc34a"></div>
-      <div class="color-preset" style="background:#2d8a3e" data-color="#2d8a3e"></div>
-      <div class="color-preset" style="background:#16a085" data-color="#16a085"></div>
-      <div class="color-preset" style="background:#1fb6c9" data-color="#1fb6c9"></div>
-      <div class="color-preset" style="background:#2196f3" data-color="#2196f3"></div>
-      <div class="color-preset" style="background:#3949ab" data-color="#3949ab"></div>
-      <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-      <div class="color-preset" style="background:#a855f7" data-color="#a855f7"></div>
-      <div class="color-preset" style="background:#d946a8" data-color="#d946a8"></div>
-      <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-      <div class="color-preset" style="background:#8d6e63" data-color="#8d6e63"></div>
-      <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-secondary" onclick="closeModal('devoirColorModal')">Annuler</button>
-      <button class="btn-primary" onclick="confirmDevoirColor()">Appliquer</button>
-    </div>
-  </div>
-</div>
 <div id="toast"></div>
 <script>
 // ═══════════════════════════════════════
@@ -860,7 +789,6 @@ let S = {
   selectedColor:'#3a8c3a',
   selectedMatiereColor:'#3a8c3a',
   selectedUeColor:'#255225',
-  selectedDevoirColor:'#e63946',
   sidebarCollapsed:false,
   edtLastUpdate:null,
   amuLogin:'',
@@ -879,35 +807,7 @@ function load(){
 // INIT
 // ═══════════════════════════════════════
 load();
-const PWD_INSULTS = [
-  'looser',
-  'gros noob',
-  "t'es naze en vrai",
-  'bouffon',
-  'ba alors tu sais pas écrire',
-  'gneugneugneu je connais pas le mot de passe',
-  "peut être la prochaine fois avec un peu plus d'effort tu y arriveras donc ne lâche rien et garde espoir",
-  'singe',
-];
-function checkPwd(){
-  const val = document.getElementById('pwdInput').value;
-  if(val === 'tams'){
-    document.getElementById('pwdGate').style.display = 'none';
-    document.getElementById('app').classList.remove('pwd-locked');
-    initAppAfterPwd();
-  } else if(val === 'tuteur'){
-    document.getElementById('pwdInsult').textContent = "tien tu passe pas toi, ça t'apprendra à te moquer de ma moyenne d'outil ingé";
-    document.getElementById('pwdInput').value = '';
-    document.getElementById('pwdInput').focus();
-  } else {
-    const msg = PWD_INSULTS[Math.floor(Math.random() * PWD_INSULTS.length)];
-    document.getElementById('pwdInsult').textContent = msg;
-    document.getElementById('pwdInput').value = '';
-    document.getElementById('pwdInput').focus();
-  }
-}
-
-function initAppAfterPwd(){
+document.addEventListener('DOMContentLoaded',()=>{
   if(S.sidebarCollapsed) document.getElementById('sidebar').classList.add('collapsed');
   setHeaderDate();
   updateSidebar();
@@ -920,10 +820,131 @@ function initAppAfterPwd(){
   setupColorPresets('matiereColorPresets','selectedMatiereColor');
   setupColorPresets('ueColorPresets','selectedUeColor');
   setupEditMatiereColorPresets();
-  setupColorPresets('devoirColorPresets','selectedDevoirColor');
+  setupEditMatiereColorPresets();
   document.getElementById('noteDate').value=today();
   document.getElementById('devoirDate').value=today();
+});
+
+function today(){return new Date().toISOString().split('T')[0];}
+
+// ═══════════════════════════════════════
+// SIDEBAR
+// ═══════════════════════════════════════
+function toggleSidebar(){
+  const sb=document.getElementById('sidebar');
+  sb.classList.toggle('collapsed');
+  S.sidebarCollapsed=sb.classList.contains('collapsed');
+  save();
+}
+function openMobileSidebar(){
+  document.getElementById('sidebar').classList.add('mobile-open');
+  document.getElementById('sidebar-overlay').classList.add('show');
+}
+function closeMobileSidebar(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('sidebar-overlay').classList.remove('show');
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('pwdInput').focu
+// ═══════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  const map={dashboard:0,edt:1,notes:2,devoirs:3};
+  document.querySelectorAll('.nav-item')[map[id]]?.classList.add('active');
+  const titles={dashboard:'Tableau de bord',edt:'Emploi du temps',notes:'Notes & UE',devoirs:'Devoirs'};
+  document.getElementById('pageTitle').textContent=titles[id]||id;
+  const btn=document.getElementById('headerAction');
+  if(id==='edt'){btn.style.display='';btn.textContent='+ Ajouter cours';btn.onclick=()=>switchEdtTab('saisie');}
+  else if(id==='notes'){btn.style.display='';btn.textContent='+ Note';btn.onclick=openAddNote;}
+  else if(id==='devoirs'){btn.style.display='';btn.textContent='+ Devoir';btn.onclick=()=>openModal('devoirModal');}
+  else{btn.style.display='none';}
+  if(id==='notes') renderAllNotes();
+  if(id==='devoirs'){renderCalendar();renderDevoirsList();}
+  if(id==='dashboard') renderDashboard();
+  if(id==='edt') renderEdtCurrentView();
+  closeMobileSidebar();
+}
+
+function setHeaderDate(){
+  const now = new Date();
+  document.getElementById('hdbDay').textContent = now.getDate();
+  document.getElementById('hdbWeekday').textContent = now.toLocaleDateString('fr-FR',{weekday:'long'});
+  document.getElementById('hdbMonth').textContent = now.toLocaleDateString('fr-FR',{month:'long',year:'numeric'});
+}
+
+// ═══════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════
+function updateSidebar(){
+  const n=S.user.name||'Étudiant';
+  document.getElementById('sidebarName').textContent=n;
+  document.getElementById('sidebarClass').textContent=S.user.classe||'AMU';
+  document.getElementById('avatarInitials').textContent=n.charAt(0).toUpperCase()||'?';
+}
+function openSettings(){
+  document.getElementById('settingsName').value=S.user.name;
+  document.getElementById('settingsClass').value=S.user.classe;
+  document.getElementById('settingsEtab').value=S.user.etab;
+  openModal('settingsModal');
+}
+function saveSettings(){
+  S.user.name=document.getElementById('settingsName').value.trim();
+  S.user.classe=document.getElementById('settingsClass').value.trim();
+  S.user.etab=document.getElementById('settingsEtab').value.trim();
+  save();updateSidebar();closeModal('settingsModal');toast('Paramètres enregistrés ✓');
+}
+
+// ═══════════════════════════════════════
+// EDT
+// ═══════════════════════════════════════
+function initEdt(){
+  const tc=document.getElementById('timeCol');tc.innerHTML='';
+  for(let i=0;i<EDT_SLOTS;i++){
+    const h=EDT_START+i;
+    tc.innerHTML+=`<div class="edt-time-slot">${String(h).padStart(2,'0')}h</div>`;
+  }
+  // restore correct view tab state on load
+  ['Week','Month','Year'].forEach(v=>{
+    document.getElementById('view'+v).classList.toggle('active', v.toLowerCase()===S.edtView);
+    document.getElementById('edtView'+v).style.display = (v.toLowerCase()===S.edtView)?'':'none';
+  });
+  renderEdtCurrentView();
+}
+
+function getWeekDates(offset=0){
+  const now=new Date(),day=now.getDay();
+  const mon=new Date(now);
+  mon.setDate(now.getDate()-(day===0?6:day-1)+offset*7);
+  return Array.from({length:5},(_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d;});
+}
+
+function renderEdt(){
+  const dates=getWeekDates(S.currentWeekOffset);
+  const now=new Date();
+  const days=['Lun','Mar','Mer','Jeu','Ven'];
+  const mos=['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+  const s=dates[0],e=dates[4];
+  document.getElementById('weekLabel').textContent=`${s.getDate()} ${mos[s.getMonth()]} – ${e.getDate()} ${mos[e.getMonth()]} ${e.getFullYear()}`;
+  for(let i=0;i<5;i++){
+    const d=dates[i],isToday=d.toDateString()===now.toDateString();
+    const hd=document.getElementById('hd'+i);
+    hd.textContent=`${days[i]} ${d.getDate()}`;
+    hd.className='edt-head-cell'+(isToday?' tc':'');
+    const col=document.getElementById('day'+i);
+    col.className='edt-day-col'+(isToday?' tc':'');
+    col.innerHTML='';
+    for(let s2=0;s2<EDT_SLOTS;s2++) col.innerHTML+=`<div class="edt-slot"></div>`;
+    S.courses.filter(c=>c.recurrence==='weekly'?c.day==i:(c.day==i&&c.weekOffset===S.currentWeekOffset))
+      .forEach(c=>{
+        const [sh,sm]=c.start.split(':').map(Number);
+        const [eh,em]=c.end.split(':').map(Number);
+        const top=((sh-EDT_START)*SLOT_H)+(sm/60*SLOT_H);
+        const h=((eh-sh)*SLOT_H)+((em-sm)/60*SLOT_H);
+        const div=document.createElement('div');
+        div.className='edt-course';
+        div.style.cssText=`top:${top}px;height:${Math.max(h,26)}px;background:${c.color}22;border-left:3px solid ${c.color};color:${c.color}`;
+        div.innerHTML=`<div class="edt-cn">${c.matiere}</div><div class="edt-cr">${c.room||''} ${c.teacher?'• '+c.teacher:''}</div>`;
+        div.onclick=()=>{if(confirm(`Supprimer "${c.matiere}" ?`)){S.courses=S.courses.filter(x=>x.id!==
