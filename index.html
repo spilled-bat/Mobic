@@ -20,7 +20,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);font-size:14px;-webkit-tap-highlight-color:transparent}
 #app{display:flex;height:100vh;overflow:hidden}
- 
+
 /* SIDEBAR */
 #sidebar{width:var(--sb);background:var(--g700);display:flex;flex-direction:column;flex-shrink:0;transition:width var(--tr);overflow:hidden;z-index:20;position:relative}
 #sidebar.collapsed{width:var(--sb-min)}
@@ -53,7 +53,7 @@ nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:10px
 #sidebar.collapsed .nav-badge{opacity:0}
 .sb-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(255,255,255,.3);white-space:nowrap;overflow:hidden}
 #sidebar.collapsed .sb-footer{opacity:0}
- 
+
 /* MAIN */
 #main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 20px;flex-shrink:0;box-shadow:0 1px 4px rgba(30,45,30,.06)}
@@ -78,11 +78,11 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 #content::-webkit-scrollbar{width:5px}
 #content::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
 .view{display:none}.view.active{display:block}
- 
+
 /* CARDS */
 .card{background:#fff;border-radius:var(--rad);border:1.5px solid var(--line);box-shadow:var(--sh);padding:16px 18px}
 .card-title{font-family:'Caveat',cursive;font-size:18px;font-weight:700;color:var(--g700);margin-bottom:12px;display:flex;align-items:center;gap:7px}
- 
+
 /* DASHBOARD */
 .dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
 .stat-card{background:#fff;border-radius:var(--rad);border:1.5px solid var(--line);box-shadow:var(--sh);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:box-shadow var(--tr),transform var(--tr)}
@@ -109,7 +109,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .note-mini:last-child{border-bottom:none}
 .note-mini-mat{font-size:13px;display:flex;align-items:center;gap:7px}
 .note-mini-avg{font-family:'Caveat',cursive;font-weight:700;font-size:18px}
- 
+
 /* EDT */
 #edt-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
 .week-nav{display:flex;align-items:center;gap:6px}
@@ -142,16 +142,16 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .form-group label{font-size:10px;font-weight:700;color:var(--ink-mid);text-transform:uppercase;letter-spacing:.6px}
 .form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-family:'Inter',sans-serif;color:var(--ink);outline:none;transition:border-color var(--tr);background:var(--paper)}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--g500);background:#fff}
-.color-presets{display:flex;gap:6px;flex-wrap:wrap}
-.color-preset{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:border-color var(--tr)}
+.color-presets{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:4px 0}
+.color-preset{width:30px;height:30px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:border-color var(--tr);justify-self:center}
 .color-preset.active,.color-preset:hover{border-color:var(--ink-mid)}
- 
+
 /* ═══════════════ NOTES / UE ═══════════════ */
 .notes-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid var(--line)}
 .notes-tab{padding:9px 18px;cursor:pointer;font-size:13px;font-weight:500;color:var(--ink-light);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all var(--tr)}
 .notes-tab.active{color:var(--g600);font-weight:700;border-bottom-color:var(--g600)}
-.notes-sub{display:none}.notes-sub.active{display:block}
- 
+.notes-sub{display:none}.notes-sub.active{display:block;min-height:0}
+
 /* Matières list */
 .mat-list{list-style:none}
 .mat-item{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:9px;cursor:pointer;transition:background var(--tr);margin-bottom:2px}
@@ -168,9 +168,11 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .note-chip.good{background:var(--g100);color:var(--g600)}
 .note-chip.mid{background:var(--ora-l);color:var(--ora)}
 .note-chip.bad{background:var(--red-l);color:var(--red)}
+.notes-mat-layout{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start}
+@media(max-width:700px){.notes-mat-layout{grid-template-columns:1fr}.notes-mat-layout>div:first-child{order:1}.notes-mat-layout>div:last-child{order:2}}
 .avg-bar{background:var(--g100);border-radius:4px;height:6px;overflow:hidden;margin-top:6px}
 .avg-bar-fill{height:100%;border-radius:4px;transition:width .5s}
- 
+
 /* UE cards */
 .ue-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:20px}
 .ue-card{background:#fff;border-radius:var(--rad);border:1.5px solid var(--line);box-shadow:var(--sh);overflow:hidden}
@@ -184,13 +186,13 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .ue-mat-name{font-size:13px;color:var(--ink);display:flex;align-items:center;gap:7px}
 .ue-mat-coef{font-size:11px;color:var(--ink-light);margin-left:4px}
 .ue-mat-avg{font-family:'Caveat',cursive;font-size:16px;font-weight:700}
- 
+
 /* Moy generale UE */
 .moy-gen-card{background:var(--g700);border-radius:var(--rad);padding:20px 24px;color:#fff;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
 .moy-gen-label{font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:rgba(255,255,255,.8)}
 .moy-gen-val{font-family:'Caveat',cursive;font-size:48px;font-weight:700;line-height:1}
 .moy-gen-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px}
- 
+
 /* Config UE */
 .ue-config-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--g100);flex-wrap:wrap}
 .ue-config-row:last-child{border-bottom:none}
@@ -199,9 +201,11 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .ue-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:600;color:#fff;margin:2px}
 .ue-tag-x{cursor:pointer;opacity:.7;font-size:13px;line-height:1}
 .ue-tag-x:hover{opacity:1}
- 
+
 /* DEVOIRS */
 .devoirs-layout{display:grid;grid-template-columns:1fr 290px;gap:16px}
+.dv-top-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0}
+@media(max-width:750px){.dv-top-row{grid-template-columns:1fr}}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
 .cal-head{text-align:center;font-size:10px;font-weight:700;color:var(--g600);padding:5px 0}
 .cal-day{background:var(--g50);border-radius:7px;padding:5px 4px;min-height:64px;cursor:pointer;transition:background var(--tr);border:1.5px solid transparent;position:relative}
@@ -212,7 +216,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .cal-day-num{font-family:'Caveat',cursive;font-size:14px;font-weight:700;color:var(--ink-mid);margin-bottom:3px}
 .cal-day.today .cal-day-num{color:var(--g700)}
 .cal-dot{width:6px;height:6px;border-radius:50%;margin:1px auto}
-.dv-full{background:#fff;border-radius:9px;border:1.5px solid var(--line);padding:11px 13px;margin-bottom:7px;display:flex;gap:11px;align-items:flex-start;box-shadow:var(--sh)}
+.dv-full{background:#fff;border-radius:9px;border:1.5px solid var(--line);padding:10px 12px;margin-bottom:6px;display:flex;gap:10px;align-items:center;box-shadow:var(--sh);transition:opacity var(--tr)}
 .dv-full.done{opacity:.5}
 .dv-full.done .dv-title{text-decoration:line-through}
 .dv-check{width:20px;height:20px;border-radius:5px;border:2px solid var(--line);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all var(--tr);margin-top:2px}
@@ -221,15 +225,15 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .dv-title{font-size:13px;font-weight:500}
 .dv-due{font-size:11px;color:var(--ink-light);margin-top:3px}
 .dv-due.urgent{color:var(--red);font-weight:600}
- 
+
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(20,35,20,.5);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay{position:fixed;inset:0;background:rgba(20,35,20,.5);z-index:100;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 0;opacity:0;pointer-events:none;transition:opacity .2s}
 .modal-overlay.show{opacity:1;pointer-events:all}
-.modal{background:#fff;border-radius:16px;padding:24px;width:460px;max-width:96vw;max-height:90vh;overflow-y:auto;box-shadow:var(--sh-lg);transform:translateY(12px);transition:transform .2s}
+.modal{background:#fff;border-radius:16px;padding:24px;width:460px;max-width:96vw;max-height:85vh;overflow-y:auto;box-shadow:var(--sh-lg);transform:translateY(12px);transition:transform .2s;-webkit-overflow-scrolling:touch}
 .modal-overlay.show .modal{transform:translateY(0)}
 .modal-title{font-family:'Caveat',cursive;font-size:22px;font-weight:700;color:var(--g700);margin-bottom:16px}
 .modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
- 
+
 /* TOAST */
 #toast{position:fixed;bottom:20px;right:20px;background:var(--g900);color:#fff;padding:9px 17px;border-radius:10px;font-size:13px;font-weight:500;z-index:200;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
 #toast.show{opacity:1;transform:translateY(0)}
@@ -237,9 +241,10 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
 .empty-icon{font-size:32px;margin-bottom:8px}
 .empty p{font-size:13px}
 #sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:15}
- 
+
 @media(max-width:768px){
   #sidebar{position:fixed;left:0;top:0;bottom:0;z-index:20;width:var(--sb)!important;transform:translateX(-100%);transition:transform var(--tr)}
+  .modal{max-height:80vh;border-radius:12px}
   #sidebar.mobile-open{transform:translateX(0)}
   #sidebar-overlay.show{display:block}
   .mobile-menu-btn{display:flex}
@@ -250,7 +255,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
   .devoirs-layout{grid-template-columns:1fr}
   .ue-grid{grid-template-columns:1fr}
 }
- 
+
 /* ── PASSWORD GATE ── */
 #pwdGate {
   position: fixed; inset: 0; background: var(--g700);
@@ -279,7 +284,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     <div class="pwd-logo"><div class="pwd-logo-badge">M</div><div class="pwd-logo-name">MOBIC</div></div>
     <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off" onkeydown="if(event.key==='Enter')checkPwd()">
     <div class="pwd-insult" id="pwdInsult"></div>
-    <button type="button" class="btn-primary" style="width:100%;padding:10px" onclick="checkPwd()" id="pwdEnterBtn">Entrer</button>
+    <button class="btn-primary" style="width:100%;padding:10px" onclick="checkPwd()">Entrer</button>
   </div>
 </div>
 <div id="app" class="pwd-locked">
@@ -323,7 +328,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
   </nav>
   <div class="sb-footer">MOBIC v2.0 — AMU</div>
 </aside>
- 
+
 <div id="main">
   <header>
     <button class="mobile-menu-btn" onclick="openMobileSidebar()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
@@ -339,7 +344,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     <button class="btn-primary" id="headerAction" style="display:none" onclick="headerActionFn()">+ Ajouter</button>
   </header>
   <div id="content">
- 
+
 <!-- DASHBOARD -->
 <div class="view active" id="view-dashboard">
   <div class="dash-stats">
@@ -370,7 +375,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
- 
+
 <!-- EDT -->
 <div class="view" id="view-edt">
   <div id="edt-toolbar">
@@ -489,7 +494,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     <div class="notes-tab" onclick="switchNotesTab('matieres')">Mes matières</div>
     <div class="notes-tab" onclick="switchNotesTab('config')">Configuration</div>
   </div>
- 
+
   <!-- Vue UE -->
   <div class="notes-sub active" id="notesSubUe">
     <div id="moyGenContainer"></div>
@@ -498,10 +503,10 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
       <button class="btn-secondary" onclick="switchNotesTab('config')">+ Gérer les UE et matières</button>
     </div>
   </div>
- 
+
   <!-- Mes matières -->
   <div class="notes-sub" id="notesSubMatieres">
-    <div style="display:grid;grid-template-columns:230px 1fr;gap:16px" id="notesLayout">
+    <div class="notes-mat-layout" id="notesLayout">
       <div>
         <div class="card" style="margin-bottom:14px">
           <div class="card-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> Matières</div>
@@ -520,7 +525,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
       </div>
     </div>
   </div>
- 
+
   <!-- Configuration UE -->
   <div class="notes-sub" id="notesSubConfig">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
@@ -542,37 +547,63 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
- 
+
 <!-- DEVOIRS -->
 <div class="view" id="view-devoirs">
-  <div class="devoirs-layout">
-    <div>
-      <div class="card" style="margin-bottom:14px">
-        <div class="card-title" style="margin-bottom:10px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Calendrier
-          <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
-            <button class="week-btn" onclick="changeCalMonth(-1)">‹</button>
-            <span style="font-family:'Caveat',cursive;font-size:15px;font-weight:700;color:var(--g700)" id="calMonthLabel"></span>
-            <button class="week-btn" onclick="changeCalMonth(1)">›</button>
-          </div>
-        </div>
-        <div class="cal-grid" id="calGrid"></div>
-      </div>
-      <div class="card">
-        <div class="card-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> Devoirs du <span id="selectedDateLabel" style="color:var(--g500)">—</span></div>
-        <ul id="devoirListSelected"><li class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><polyline points="20 6 9 17 4 12"/></svg></div><p>Aucun devoir ce jour</p></li></ul>
-      </div>
-    </div>
+
+  <!-- Calendrier + liste du jour -->
+  <div class="dv-top-row">
+
+    <!-- Calendrier mensuel -->
     <div class="card">
-      <div class="card-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg> À venir</div>
-      <ul id="devoirListAll"><div class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><polyline points="20 6 9 17 4 12"/></svg></div><p>Aucun devoir</p></div></ul>
+      <div class="card-title" style="margin-bottom:10px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Calendrier
+        <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+          <button class="week-btn" onclick="changeCalMonth(-1)">‹</button>
+          <span style="font-family:'Caveat',cursive;font-size:15px;font-weight:700;color:var(--g700);min-width:130px;text-align:center" id="calMonthLabel"></span>
+          <button class="week-btn" onclick="changeCalMonth(1)">›</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <!-- Devoirs du jour sélectionné -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg>
+        Devoirs du <span id="selectedDateLabel" style="color:var(--g500)">—</span>
+      </div>
+      <ul id="devoirListSelected" style="list-style:none">
+        <li class="empty"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><polyline points="20 6 9 17 4 12"/></svg><p>Aucun devoir ce jour</p></li>
+      </ul>
     </div>
   </div>
+
+  <!-- Tous les devoirs à venir -->
+  <div class="card" style="margin-top:16px">
+    <div class="card-title" style="margin-bottom:14px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Tous les devoirs à venir
+      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+        <select id="devoirFilterUrgence" onchange="renderDevoirsList()" style="font-size:12px;border:1.5px solid var(--line);border-radius:7px;padding:4px 8px;font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);outline:none">
+          <option value="">Toutes urgences</option>
+          <option value="high">Urgent</option>
+          <option value="mid">Important</option>
+          <option value="low">Normal</option>
+        </select>
+      </div>
+    </div>
+    <ul id="devoirListAll" style="list-style:none">
+      <div class="empty"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><polyline points="20 6 9 17 4 12"/></svg><p>Aucun devoir à venir</p></div>
+    </ul>
+  </div>
 </div>
- 
+
   </div><!-- /content -->
 </div><!-- /main -->
 </div><!-- /app -->
- 
+
 <!-- MODALS -->
 <div class="modal-overlay" id="settingsModal">
   <div class="modal">
@@ -586,7 +617,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="noteModal">
   <div class="modal">
     <div class="modal-title">Ajouter une note</div>
@@ -603,7 +634,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="matiereModal">
   <div class="modal">
     <div class="modal-title">Nouvelle matière</div>
@@ -616,38 +647,12 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
         <div class="color-preset" style="background:#8bc34a" data-color="#8bc34a"></div>
         <div class="color-preset active" style="background:#2d8a3e" data-color="#2d8a3e"></div>
         <div class="color-preset" style="background:#16a085" data-color="#16a085"></div>
-        <div class="color-preset" style="background:#1fb6c9" data-color="#1fb6c9"></div>
         <div class="color-preset" style="background:#2196f3" data-color="#2196f3"></div>
         <div class="color-preset" style="background:#3949ab" data-color="#3949ab"></div>
         <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-        <div class="color-preset" style="background:#a855f7" data-color="#a855f7"></div>
-        <div class="color-preset" style="background:#d946a8" data-color="#d946a8"></div>
         <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
         <div class="color-preset" style="background:#8d6e63" data-color="#8d6e63"></div>
         <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-      </div>
-        <div class="color-preset" style="background:#2d6b2d" data-color="#2d6b2d"></div>
-        <div class="color-preset" style="background:#3b82f6" data-color="#3b82f6"></div>
-        <div class="color-preset" style="background:#1d4ed8" data-color="#1d4ed8"></div>
-        <div class="color-preset" style="background:#0891b2" data-color="#0891b2"></div>
-        <div class="color-preset" style="background:#0e7490" data-color="#0e7490"></div>
-        <div class="color-preset" style="background:#8b5cf6" data-color="#8b5cf6"></div>
-        <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-        <div class="color-preset" style="background:#be123c" data-color="#be123c"></div>
-        <div class="color-preset" style="background:#e8a020" data-color="#e8a020"></div>
-        <div class="color-preset" style="background:#d4700a" data-color="#d4700a"></div>
-        <div class="color-preset" style="background:#ef4444" data-color="#ef4444"></div>
-        <div class="color-preset" style="background:#92400e" data-color="#92400e"></div>
-        <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-      </div>
-        <div class="color-preset" style="background:#3b82f6" data-color="#3b82f6"></div>
-        <div class="color-preset" style="background:#8b5cf6" data-color="#8b5cf6"></div>
-        <div class="color-preset" style="background:#e8a020" data-color="#e8a020"></div>
-        <div class="color-preset" style="background:#ef4444" data-color="#ef4444"></div>
-        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-        <div class="color-preset" style="background:#0891b2" data-color="#0891b2"></div>
-        <div class="color-preset" style="background:#16a34a" data-color="#16a34a"></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -656,7 +661,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="ueModal">
   <div class="modal">
     <div class="modal-title" id="ueModalTitle">Nouvelle UE</div>
@@ -710,41 +715,22 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="devoirModal">
   <div class="modal">
     <div class="modal-title">Ajouter un devoir</div>
     <div class="form-group" style="margin-bottom:11px"><label>Matière *</label><input type="text" id="devoirMatiere" placeholder="ex : Mathématiques"></div>
     <div class="form-group" style="margin-bottom:11px"><label>Description *</label><textarea id="devoirDesc" rows="3" placeholder="ex : Exercices p.42 — 1 à 5" style="resize:vertical"></textarea></div>
     <div class="form-group" style="margin-bottom:11px"><label>Date limite *</label><input type="date" id="devoirDate"></div>
-    <div class="form-group" style="margin-bottom:11px"><label>Urgence</label><select id="devoirUrgence"><option value="low">Normal</option><option value="mid">Important</option><option value="high">Urgent</option></select></div>
-    <div class="form-group"><label>Couleur</label>
-      <div class="color-presets" id="devoirColorPresets">
-        <div class="color-preset active" style="background:#e63946" data-color="#e63946"></div>
-        <div class="color-preset" style="background:#f4862b" data-color="#f4862b"></div>
-        <div class="color-preset" style="background:#f0c419" data-color="#f0c419"></div>
-        <div class="color-preset" style="background:#8bc34a" data-color="#8bc34a"></div>
-        <div class="color-preset" style="background:#2d8a3e" data-color="#2d8a3e"></div>
-        <div class="color-preset" style="background:#16a085" data-color="#16a085"></div>
-        <div class="color-preset" style="background:#1fb6c9" data-color="#1fb6c9"></div>
-        <div class="color-preset" style="background:#2196f3" data-color="#2196f3"></div>
-        <div class="color-preset" style="background:#3949ab" data-color="#3949ab"></div>
-        <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-        <div class="color-preset" style="background:#a855f7" data-color="#a855f7"></div>
-        <div class="color-preset" style="background:#d946a8" data-color="#d946a8"></div>
-        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-        <div class="color-preset" style="background:#8d6e63" data-color="#8d6e63"></div>
-        <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-      </div>
-    </div>
+    <div class="form-group"><label>Urgence</label><select id="devoirUrgence"><option value="low">Normal</option><option value="mid">Important</option><option value="high">Urgent</option></select></div>
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeModal('devoirModal')">Annuler</button>
       <button class="btn-primary" onclick="saveDevoir()">Enregistrer</button>
     </div>
   </div>
 </div>
- 
- 
+
+
 <div class="modal-overlay" id="editNoteModal">
   <div class="modal">
     <div class="modal-title">Modifier la note</div>
@@ -761,7 +747,7 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="editMatiereModal">
   <div class="modal">
     <div class="modal-title">Modifier la matière</div>
@@ -774,38 +760,12 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
         <div class="color-preset" style="background:#8bc34a" data-color="#8bc34a"></div>
         <div class="color-preset active" style="background:#2d8a3e" data-color="#2d8a3e"></div>
         <div class="color-preset" style="background:#16a085" data-color="#16a085"></div>
-        <div class="color-preset" style="background:#1fb6c9" data-color="#1fb6c9"></div>
         <div class="color-preset" style="background:#2196f3" data-color="#2196f3"></div>
         <div class="color-preset" style="background:#3949ab" data-color="#3949ab"></div>
         <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-        <div class="color-preset" style="background:#a855f7" data-color="#a855f7"></div>
-        <div class="color-preset" style="background:#d946a8" data-color="#d946a8"></div>
         <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
         <div class="color-preset" style="background:#8d6e63" data-color="#8d6e63"></div>
         <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-      </div>
-        <div class="color-preset" style="background:#2d6b2d" data-color="#2d6b2d"></div>
-        <div class="color-preset" style="background:#3b82f6" data-color="#3b82f6"></div>
-        <div class="color-preset" style="background:#1d4ed8" data-color="#1d4ed8"></div>
-        <div class="color-preset" style="background:#0891b2" data-color="#0891b2"></div>
-        <div class="color-preset" style="background:#0e7490" data-color="#0e7490"></div>
-        <div class="color-preset" style="background:#8b5cf6" data-color="#8b5cf6"></div>
-        <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-        <div class="color-preset" style="background:#be123c" data-color="#be123c"></div>
-        <div class="color-preset" style="background:#e8a020" data-color="#e8a020"></div>
-        <div class="color-preset" style="background:#d4700a" data-color="#d4700a"></div>
-        <div class="color-preset" style="background:#ef4444" data-color="#ef4444"></div>
-        <div class="color-preset" style="background:#92400e" data-color="#92400e"></div>
-        <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-      </div>
-        <div class="color-preset" style="background:#3b82f6" data-color="#3b82f6"></div>
-        <div class="color-preset" style="background:#8b5cf6" data-color="#8b5cf6"></div>
-        <div class="color-preset" style="background:#e8a020" data-color="#e8a020"></div>
-        <div class="color-preset" style="background:#ef4444" data-color="#ef4444"></div>
-        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-        <div class="color-preset" style="background:#0891b2" data-color="#0891b2"></div>
-        <div class="color-preset" style="background:#16a34a" data-color="#16a34a"></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -814,29 +774,13 @@ header{height:var(--hh);background:#fff;border-bottom:1px solid var(--line);disp
     </div>
   </div>
 </div>
-<div class="modal-overlay" id="devoirColorModal">
-  <div class="modal" style="width:340px">
-    <div class="modal-title">Couleur du devoir</div>
-    <div class="color-presets" id="devoirEditColorPresets">
-      <div class="color-preset active" style="background:#e63946" data-color="#e63946"></div>
-      <div class="color-preset" style="background:#f4862b" data-color="#f4862b"></div>
-      <div class="color-preset" style="background:#f0c419" data-color="#f0c419"></div>
-      <div class="color-preset" style="background:#8bc34a" data-color="#8bc34a"></div>
-      <div class="color-preset" style="background:#2d8a3e" data-color="#2d8a3e"></div>
-      <div class="color-preset" style="background:#16a085" data-color="#16a085"></div>
-      <div class="color-preset" style="background:#1fb6c9" data-color="#1fb6c9"></div>
-      <div class="color-preset" style="background:#2196f3" data-color="#2196f3"></div>
-      <div class="color-preset" style="background:#3949ab" data-color="#3949ab"></div>
-      <div class="color-preset" style="background:#7c3aed" data-color="#7c3aed"></div>
-      <div class="color-preset" style="background:#a855f7" data-color="#a855f7"></div>
-      <div class="color-preset" style="background:#d946a8" data-color="#d946a8"></div>
-      <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-      <div class="color-preset" style="background:#8d6e63" data-color="#8d6e63"></div>
-      <div class="color-preset" style="background:#64748b" data-color="#64748b"></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-secondary" onclick="closeModal('devoirColorModal')">Annuler</button>
-      <button class="btn-primary" onclick="confirmDevoirColor()">Appliquer</button>
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal" style="width:340px;text-align:center">
+    <div class="modal-title" id="confirmTitle" style="justify-content:center">Confirmer</div>
+    <p id="confirmMsg" style="font-size:14px;color:var(--ink-mid);margin-bottom:20px"></p>
+    <div class="modal-footer" style="justify-content:center">
+      <button class="btn-secondary" onclick="closeModal('confirmModal')">Annuler</button>
+      <button class="btn-danger" id="confirmOkBtn" onclick="">Supprimer</button>
     </div>
   </div>
 </div>
@@ -860,7 +804,7 @@ let S = {
   selectedColor:'#3a8c3a',
   selectedMatiereColor:'#3a8c3a',
   selectedUeColor:'#255225',
-  selectedDevoirColor:'#e63946',
+  selectedMatiereColor:'#2d8a3e',
   sidebarCollapsed:false,
   edtLastUpdate:null,
   amuLogin:'',
@@ -869,12 +813,12 @@ let S = {
 };
 const URGC = {low:'#3a8c3a',mid:'#e8a020',high:'#c0392b'};
 const EDT_START=7,EDT_SLOTS=14,SLOT_H=50;
- 
+
 function save(){try{localStorage.setItem('mobic3',JSON.stringify(S));}catch(e){}}
 function load(){
   try{const d=localStorage.getItem('mobic3');if(d){const p=JSON.parse(d);Object.keys(p).forEach(k=>{S[k]=p[k];});}}catch(e){}
 }
- 
+
 // ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
@@ -894,11 +838,7 @@ function checkPwd(){
   if(val === 'tams'){
     document.getElementById('pwdGate').style.display = 'none';
     document.getElementById('app').classList.remove('pwd-locked');
-    try {
-      initAppAfterPwd();
-    } catch(e) {
-      console.error('Erreur au chargement de MOBIC :', e);
-    }
+    initAppAfterPwd();
   } else if(val === 'tuteur'){
     document.getElementById('pwdInsult').textContent = "tien tu passe pas toi, ça t'apprendra à te moquer de ma moyenne d'outil ingé";
     document.getElementById('pwdInput').value = '';
@@ -910,7 +850,7 @@ function checkPwd(){
     document.getElementById('pwdInput').focus();
   }
 }
- 
+
 function initAppAfterPwd(){
   if(S.sidebarCollapsed) document.getElementById('sidebar').classList.add('collapsed');
   setHeaderDate();
@@ -921,24 +861,19 @@ function initAppAfterPwd(){
   initCalendar();
   updateDevoirsBadge();
   setupColorPresets('colorPresets','selectedColor');
-  setupColorPresets('matiereColorPresets','selectedMatiereColor');
   setupColorPresets('ueColorPresets','selectedUeColor');
+  setupColorPresets('matiereColorPresets','selectedMatiereColor');
   setupEditMatiereColorPresets();
-  setupColorPresets('devoirColorPresets','selectedDevoirColor');
   document.getElementById('noteDate').value=today();
   document.getElementById('devoirDate').value=today();
 }
- 
+
 document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('pwdInput').focus();
-  document.getElementById('pwdEnterBtn').addEventListener('click', checkPwd);
-  document.getElementById('pwdInput').addEventListener('keydown', (e) => {
-    if(e.key === 'Enter') checkPwd();
-  });
 });
- 
+
 function today(){return new Date().toISOString().split('T')[0];}
- 
+
 // ═══════════════════════════════════════
 // SIDEBAR
 // ═══════════════════════════════════════
@@ -956,7 +891,7 @@ function closeMobileSidebar(){
   document.getElementById('sidebar').classList.remove('mobile-open');
   document.getElementById('sidebar-overlay').classList.remove('show');
 }
- 
+
 // ═══════════════════════════════════════
 // NAV
 // ═══════════════════════════════════════
@@ -979,14 +914,14 @@ function showView(id){
   if(id==='edt') renderEdtCurrentView();
   closeMobileSidebar();
 }
- 
+
 function setHeaderDate(){
   const now = new Date();
   document.getElementById('hdbDay').textContent = now.getDate();
   document.getElementById('hdbWeekday').textContent = now.toLocaleDateString('fr-FR',{weekday:'long'});
   document.getElementById('hdbMonth').textContent = now.toLocaleDateString('fr-FR',{month:'long',year:'numeric'});
 }
- 
+
 // ═══════════════════════════════════════
 // SETTINGS
 // ═══════════════════════════════════════
@@ -1008,7 +943,7 @@ function saveSettings(){
   S.user.etab=document.getElementById('settingsEtab').value.trim();
   save();updateSidebar();closeModal('settingsModal');toast('Paramètres enregistrés ✓');
 }
- 
+
 // ═══════════════════════════════════════
 // EDT
 // ═══════════════════════════════════════
@@ -1025,14 +960,14 @@ function initEdt(){
   });
   renderEdtCurrentView();
 }
- 
+
 function getWeekDates(offset=0){
   const now=new Date(),day=now.getDay();
   const mon=new Date(now);
   mon.setDate(now.getDate()-(day===0?6:day-1)+offset*7);
   return Array.from({length:5},(_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d;});
 }
- 
+
 function renderEdt(){
   const dates=getWeekDates(S.currentWeekOffset);
   const now=new Date();
@@ -1064,647 +999,6 @@ function renderEdt(){
       });
   }
 }
- 
-function duplicateWeekType(){
-  // Convertit tous les cours "une seule fois" de la semaine affichée en cours permanents (hebdomadaires)
-  const onceCourses = S.courses.filter(c => c.recurrence === 'once' && c.weekOffset === S.currentWeekOffset);
-  if(!onceCourses.length){ toast('Aucun cours ponctuel à convertir cette semaine'); return; }
-  if(!confirm(`Transformer ${onceCourses.length} cours de cette semaine en semaine type permanente ?`)) return;
-  onceCourses.forEach(c => { c.recurrence = 'weekly'; });
-  save(); renderEdt(); renderCourseList(); toast('Semaine type enregistrée définitivement ✓');
-}
- 
-// ═══ VUES SEMAINE / MOIS / ANNÉE ═══
-S.edtView = S.edtView || 'week';
-S.edtMonthOffset = S.edtMonthOffset || 0;
-S.edtYearOffset = S.edtYearOffset || 0;
- 
-function switchEdtView(view){
-  S.edtView = view;
-  save();
-  ['Week','Month','Year'].forEach(v=>{
-    document.getElementById('view'+v).classList.toggle('active', v.toLowerCase()===view);
-    document.getElementById('edtView'+v).style.display = (v.toLowerCase()===view)?'':'none';
-  });
-  renderEdtCurrentView();
-}
- 
-function renderEdtCurrentView(){
-  if(S.edtView==='week') renderEdt();
-  else if(S.edtView==='month') renderEdtMonth();
-  else renderEdtYear();
-}
- 
-function navEdt(d){
-  if(S.edtView==='week') S.currentWeekOffset += d;
-  else if(S.edtView==='month') S.edtMonthOffset += d;
-  else S.edtYearOffset += d;
-  save();
-  renderEdtCurrentView();
-}
- 
-function goToCurrentWeek(){
-  S.currentWeekOffset = 0; S.edtMonthOffset = 0; S.edtYearOffset = 0;
-  save();
-  renderEdtCurrentView();
-}
- 
-function changeWeek(d){S.currentWeekOffset+=d;renderEdt();}
- 
-function renderEdtMonth(){
-  const now = new Date();
-  const date = new Date(now.getFullYear(), now.getMonth() + S.edtMonthOffset, 1);
-  const mos = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  document.getElementById('weekLabel').textContent = `${mos[date.getMonth()]} ${date.getFullYear()}`;
-  const firstDow = (new Date(date.getFullYear(), date.getMonth(), 1).getDay() + 6) % 7;
-  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-  const todayStr = today();
-  let html = '';
-  ['L','M','M','J','V','S','D'].forEach(d => { html += `<div class="cal-head">${d}</div>`; });
-  for(let i = 0; i < firstDow; i++){
-    const p = new Date(date.getFullYear(), date.getMonth(), 0 - (firstDow - i - 1));
-    html += `<div class="cal-day other-month"><div class="cal-day-num">${p.getDate()}</div></div>`;
-  }
-  for(let d = 1; d <= lastDay; d++){
-    const dow = (new Date(date.getFullYear(), date.getMonth(), d).getDay() + 6) % 7;
-    if(dow > 4){ // weekend — still show, but with no courses since EDT is Lun-Ven
-      const ds = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const isToday = ds === todayStr;
-      html += `<div class="cal-day${isToday?' today':''}" style="opacity:.5"><div class="cal-day-num">${d}</div></div>`;
-      continue;
-    }
-    const ds = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const isToday = ds === todayStr;
-    const dayCourses = S.courses.filter(c => c.recurrence === 'weekly' && c.day === dow);
-    const dots = dayCourses.slice(0,3).map(c => `<div class="cal-devoir-dot" style="background:${c.color}22;color:${c.color};font-size:9px;border-radius:4px;padding:0 3px;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.matiere}</div>`).join('');
-    html += `<div class="cal-day${isToday?' today':''}" style="cursor:default"><div class="cal-day-num">${d}</div>${dots}</div>`;
-  }
-  document.getElementById('edtMonthGrid').innerHTML = html;
-}
- 
-function renderEdtYear(){
-  const now = new Date();
-  const year = now.getFullYear() + S.edtYearOffset;
-  document.getElementById('weekLabel').textContent = `${year}`;
-  const mos = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  let html = '';
-  for(let mo = 0; mo < 12; mo++){
-    const firstDow = (new Date(year, mo, 1).getDay() + 6) % 7;
-    const lastDay = new Date(year, mo + 1, 0).getDate();
-    const todayStr = today();
-    let days = '';
-    ['L','M','M','J','V','S','D'].forEach(d => { days += `<div class="cal-head" style="font-size:8px;padding:2px 0">${d}</div>`; });
-    for(let i = 0; i < firstDow; i++) days += `<div></div>`;
-    for(let d = 1; d <= lastDay; d++){
-      const ds = `${year}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const isToday = ds === todayStr;
-      const dow = (new Date(year, mo, d).getDay() + 6) % 7;
-      const hasCourses = dow <= 4 && S.courses.some(c => c.recurrence === 'weekly' && c.day === dow);
-      days += `<div style="font-size:9px;text-align:center;padding:2px 0;border-radius:4px;${isToday?'background:var(--g500);color:#fff;font-weight:700;':hasCourses?'color:var(--g600);font-weight:600;':'color:var(--ink-light);'}">${d}</div>`;
-    }
-    html += `<div class="ue-card" style="padding:10px">
-      <div style="font-family:'Caveat',cursive;font-size:15px;font-weight:700;color:var(--g700);margin-bottom:6px;text-align:center">${mos[mo]}</div>
-      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:1px">${days}</div>
-    </div>`;
-  }
-  document.getElementById('edtYearGrid').innerHTML = html;
-}
- 
-function switchEdtTab(tab){
-  document.getElementById('edtGrille').style.display=tab==='grille'?'':'none';
-  document.getElementById('edtSaisie').style.display=tab==='saisie'?'':'none';
-  ['tabGrille','tabSaisie'].forEach(id=>document.getElementById(id).classList.remove('active'));
-  document.getElementById('tab'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
-  if(tab==='saisie') renderCourseList();
-}
- 
-function addCourse(){
-  const matiere=document.getElementById('courseMatiere').value.trim();
-  const start=document.getElementById('courseStart').value;
-  const end=document.getElementById('courseEnd').value;
-  if(!matiere||!start||!end){toast('Remplissez la matière et les horaires');return;}
-  if(start>=end){toast("L'heure de fin doit être après le début");return;}
-  S.courses.push({id:Date.now(),matiere,teacher:document.getElementById('courseTeacher').value.trim(),room:document.getElementById('courseRoom').value.trim(),day:parseInt(document.getElementById('courseDay').value),start,end,color:S.selectedColor,recurrence:document.getElementById('courseRecurrence').value,weekOffset:S.currentWeekOffset});
-  save();renderEdt();renderCourseList();renderDashboard();
-  ['courseMatiere','courseTeacher','courseRoom'].forEach(id=>document.getElementById(id).value='');
-  toast('Cours ajouté ✓');
-}
- 
-function renderCourseList(){
-  const el=document.getElementById('courseListTable');
-  if(!S.courses.length){el.innerHTML='<div class="empty"><p>Aucun cours enregistré</p></div>';return;}
-  const days=['Lun','Mar','Mer','Jeu','Ven'];
-  el.innerHTML=`<table class="notes-table" style="width:100%"><thead><tr><th>Matière</th><th>Jour</th><th>Horaire</th><th>Récurrence</th><th></th></tr></thead><tbody>${S.courses.map(c=>`<tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${c.color};margin-right:6px"></span>${c.matiere}</td><td>${days[c.day]}</td><td>${c.start}–${c.end}</td><td>${c.recurrence==='weekly'?'Hebdo.':'Une fois'}</td><td><button class="btn-danger" onclick="deleteCourse(${c.id})">✕</button></td></tr>`).join('')}</tbody></table>`;
-}
-function deleteCourse(id){S.courses=S.courses.filter(c=>c.id!==id);save();renderCourseList();renderEdt();toast('Cours supprimé');}
- 
- 
- 
-// ═══════════════════════════════════════
-// NOTES & UE
-// ═══════════════════════════════════════
-function computeMatAvg(mid){
-  const ns=S.notes[mid]||[];if(!ns.length)return null;
-  let t=0,c=0;ns.forEach(n=>{t+=(n.value/n.sur*20)*n.coeff;c+=n.coeff;});
-  return c>0?t/c:null;
-}
- 
-function computeUeAvg(ueId){
-  const links=S.assignments.filter(a=>a.ueId===ueId);
-  if(!links.length)return null;
-  let t=0,c=0;
-  links.forEach(a=>{
-    const avg=computeMatAvg(a.matiereId);
-    if(avg!==null){t+=avg*a.coef;c+=a.coef;}
-  });
-  return c>0?t/c:null;
-}
- 
-function computeGenAvg(){
-  if(!S.ues.length)return null;
-  let t=0,c=0;
-  S.ues.forEach(ue=>{
-    const avg=computeUeAvg(ue.id);
-    if(avg!==null){t+=avg*ue.coeff;c+=ue.coeff;}
-  });
-  return c>0?t/c:null;
-}
- 
-function fmtAvg(v){return v===null?'—':v.toFixed(2);}
-function avgClass(v){if(v===null)return '';return v>=12?'avg-good':v>=8?'avg-mid':'avg-bad';}
-function chipClass(v){if(v===null)return '';return v>=12?'good':v>=8?'mid':'bad';}
- 
-function switchNotesTab(tab){
-  document.querySelectorAll('.notes-tab').forEach((t,i)=>{
-    const tabs=['ue','matieres','config'];
-    t.classList.toggle('active',tabs[i]===tab);
-  });
-  document.querySelectorAll('.notes-sub').forEach(s=>s.classList.remove('active'));
-  document.getElementById('notesSub'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
-  if(tab==='ue') renderUeView();
-  if(tab==='matieres') renderMatiereView();
-  if(tab==='config') renderConfigView();
-}
- 
-function renderAllNotes(){
-  renderUeView();
-  renderMatiereView();
-  renderConfigView();
-  const gen=computeGenAvg();
-  document.getElementById('stat-moyenne').textContent=gen!==null?fmtAvg(gen)+'/20':'—';
-}
- 
-// ── Vue UE ──
-function renderUeView(){
-  const gen=computeGenAvg();
-  const mgc=document.getElementById('moyGenContainer');
-  if(S.ues.length){
-    const cls=gen===null?'':gen>=12?'#4ade80':gen>=8?'#fbbf24':'#f87171';
-    mgc.innerHTML=`<div class="moy-gen-card">
-      <div><div class="moy-gen-label">Moyenne générale</div><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">${S.ues.length} UE · coefficients pondérés</div></div>
-      <div style="text-align:right"><div class="moy-gen-val" style="color:${cls||'#fff'}">${fmtAvg(gen)}</div><div class="moy-gen-sub">/20</div></div>
-    </div>`;
-  } else {
-    mgc.innerHTML='';
-  }
- 
-  const grid=document.getElementById('ueGrid');
-  if(!S.ues.length){
-    grid.innerHTML='<div class="empty" style="grid-column:1/-1"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><p>Créez vos UE dans l\'onglet Configuration</p></div>';
-    return;
-  }
-  grid.innerHTML=S.ues.map(ue=>{
-    const ueAvg=computeUeAvg(ue.id);
-    const links=S.assignments.filter(a=>a.ueId===ue.id);
-    const rows=links.map(a=>{
-      const mat=S.matieres.find(m=>m.id===a.matiereId);
-      if(!mat)return '';
-      const avg=computeMatAvg(a.matiereId);
-      const cls=avgClass(avg);
-      return `<div class="ue-mat-row">
-        <div class="ue-mat-name"><span style="width:8px;height:8px;border-radius:50%;background:${mat.color};display:inline-block"></span>${mat.nom}<span class="ue-mat-coef">coef. ${a.coef}</span></div>
-        <div class="ue-mat-avg ${cls}">${fmtAvg(avg)}</div>
-      </div>`;
-    }).join('');
-    const ac=ueAvg===null?'rgba(255,255,255,.6)':ueAvg>=12?'#86efac':ueAvg>=8?'#fcd34d':'#fca5a5';
-    return `<div class="ue-card">
-      <div class="ue-header" style="background:${ue.color}">
-        <div><div class="ue-name">${ue.nom}</div><div class="ue-coef">Coef. UE : ${ue.coeff}</div></div>
-        <div><div class="ue-avg-badge" style="color:${ac}">${fmtAvg(ueAvg)}</div><div class="ue-avg-sub">/20</div></div>
-      </div>
-      <div class="ue-body">${rows||'<div style="padding:12px 16px;font-size:12px;color:var(--ink-light)">Aucune matière assignée</div>'}</div>
-    </div>`;
-  }).join('');
-}
- 
-// ── Vue Matières ──
-function renderMatiereView(){
-  const list=document.getElementById('matiereList');
-  if(!S.matieres.length){
-    list.innerHTML='<li class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><p>Ajoutez une matière</p></li>';
-    document.getElementById('moyenneGenerale').textContent='—';
-    return;
-  }
-  list.innerHTML=S.matieres.map(m=>{
-    const avg=computeMatAvg(m.id);
-    const cls=avgClass(avg);
-    return `<li class="mat-item${S.selectedMatiere===m.id?' active':''}" onclick="selectMatiere('${m.id}')">
-      <div class="mat-name"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${m.color}"></span>${m.nom}</div>
-      <div style="display:flex;align-items:center;gap:3px;flex-shrink:0">
-        <span class="mat-avg ${cls}">${fmtAvg(avg)}</span>
-        <button style="background:var(--ora);color:#fff;border:none;border-radius:5px;padding:1px 5px;font-size:10px;cursor:pointer" onclick="event.stopPropagation();openEditMatiere('${m.id}')">✎</button>
-        <button style="background:var(--red);color:#fff;border:none;border-radius:5px;padding:1px 5px;font-size:10px;cursor:pointer" onclick="event.stopPropagation();deleteMatiere('${m.id}')">✕</button>
-      </div>
-    </li>`;
-  }).join('');
-  // Moyenne générale (pondérée UE si UE existent, sinon simple)
-  const gen=computeGenAvg();
-  const genSimple=()=>{
-    let t=0,c=0;
-    S.matieres.forEach(m=>{const a=computeMatAvg(m.id);if(a!==null){t+=a;c++;}});
-    return c>0?t/c:null;
-  };
-  const displayGen=S.ues.length?gen:genSimple();
-  document.getElementById('moyenneGenerale').textContent=fmtAvg(displayGen);
-  document.getElementById('stat-moyenne').textContent=displayGen!==null?fmtAvg(displayGen)+'/20':'—';
-  if(displayGen!==null){
-    document.getElementById('moyenneBar').style.width=(displayGen/20*100)+'%';
-    document.getElementById('moyenneBar').style.background=displayGen>=12?'var(--g500)':displayGen>=8?'var(--ora)':'var(--red)';
-  }
-  if(S.selectedMatiere) renderNotesTable(S.selectedMatiere);
-}
- 
-function selectMatiere(id){S.selectedMatiere=id;renderMatiereView();}
- 
-function renderNotesTable(mid){
-  const m=S.matieres.find(x=>x.id===mid);if(!m)return;
-  const inUes=S.assignments.filter(a=>a.matiereId===mid).map(a=>{const ue=S.ues.find(u=>u.id===a.ueId);return ue?`<span class="ue-tag" style="background:${ue.color}">${ue.nom} <span class="ue-tag-x">×${a.coef}</span></span>`:''}).join('');
-  document.getElementById('notesTableTitle').innerHTML=`<span style='display:inline-flex;align-items:center;gap:5px'><svg width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='20' x2='18' y2='10'/><line x1='12' y1='20' x2='12' y2='4'/><line x1='6' y1='20' x2='6' y2='14'/></svg></span> ${m.nom} <span style="font-size:12px;font-family:'Inter',sans-serif;font-weight:400">${inUes}</span><div style="margin-left:auto;display:flex;gap:4px"><button style="background:var(--ora);color:#fff;border:none;border-radius:5px;padding:2px 7px;font-size:10px;cursor:pointer;font-family:'Inter',sans-serif" onclick="openEditMatiere('${m.id}')">✎</button><button style="background:var(--red);color:#fff;border:none;border-radius:5px;padding:2px 7px;font-size:10px;cursor:pointer;font-family:'Inter',sans-serif" onclick="deleteMatiere('${m.id}')">✕</button></div>`;
-  const ns=S.notes[mid]||[];
-  const area=document.getElementById('notesTableArea');
-  const avg=computeMatAvg(mid);
-  if(!ns.length){area.innerHTML=`<div class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg></div><p>Aucune note</p></div><button class="btn-primary" style="margin-top:10px" onclick="openAddNote()">+ Ajouter une note</button>`;return;}
-  const ac=chipClass(avg);
-  area.innerHTML=`<table class="notes-table"><thead><tr><th>Intitulé</th><th>Note</th><th>Coeff.</th><th>Date</th><th></th></tr></thead><tbody>
-    ${ns.map(n=>{const norm=n.value/n.sur*20;const cc=chipClass(norm);return `<tr><td>${n.label||'Note'}</td><td><span class="note-chip ${cc}">${n.value}/${n.sur}</span></td><td>×${n.coeff}</td><td>${n.date||'—'}</td><td><div style="display:flex;gap:3px"><button style="background:var(--ora);color:#fff;border:none;border-radius:5px;padding:1px 6px;font-size:10px;cursor:pointer" onclick="openEditNote('${mid}','${n.id}')">✎</button><button style="background:var(--red);color:#fff;border:none;border-radius:5px;padding:1px 6px;font-size:10px;cursor:pointer" onclick="deleteNote('${mid}','${n.id}')">✕</button></div></td></tr>`;}).join('')}
-    <tr style="background:var(--g50)"><td style="font-weight:700">Moyenne</td><td><span class="note-chip ${ac}">${avg!==null?fmtAvg(avg)+'/20':'—'}</span></td><td colspan="3"></td></tr>
-  </tbody></table><button class="btn-primary" style="margin-top:12px" onclick="openAddNote()">+ Ajouter une note</button>`;
-}
- 
-// ── Config ──
-function renderConfigView(){
-  // Matières list
-  const cml=document.getElementById('configMatiereList');
-  cml.innerHTML=S.matieres.length?S.matieres.map(m=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--g100)">
-    <span style="display:flex;align-items:center;gap:7px;font-size:13px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${m.color}"></span>${m.nom}</span>
-    <div style="display:flex;gap:3px"><button style="background:var(--ora);color:#fff;border:none;border-radius:5px;padding:1px 6px;font-size:10px;cursor:pointer" onclick="openEditMatiere('${m.id}')">✎</button><button style="background:var(--red);color:#fff;border:none;border-radius:5px;padding:1px 6px;font-size:10px;cursor:pointer" onclick="deleteMatiere('${m.id}')">✕</button></div>
-  </div>`).join(''):'<div class="empty"><p>Aucune matière</p></div>';
- 
-  // UE list
-  const cul=document.getElementById('configUeList');
-  cul.innerHTML=S.ues.length?S.ues.map(ue=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--g100)">
-    <span style="display:flex;align-items:center;gap:7px;font-size:13px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${ue.color}"></span>${ue.nom} <span style="font-size:11px;color:var(--ink-light)">(coef. ${ue.coeff})</span></span>
-    <div style="display:flex;gap:4px"><button class="btn-warn" style="font-size:10px;padding:2px 7px" onclick="editUe('${ue.id}')">✎</button><button class="btn-danger" style="font-size:10px;padding:2px 7px" onclick="deleteUe('${ue.id}')">✕</button></div>
-  </div>`).join(''):'<div class="empty"><p>Aucune UE</p></div>';
- 
-  // Assignments
-  const al=document.getElementById('assignmentList');
-  if(!S.matieres.length||!S.ues.length){
-    al.innerHTML='<div class="empty"><p>Créez des matières et des UE pour les affecter</p></div>';
-    return;
-  }
-  al.innerHTML=S.matieres.map(m=>{
-    const existing=S.assignments.filter(a=>a.matiereId===m.id);
-    const tags=existing.map(a=>{
-      const ue=S.ues.find(u=>u.id===a.ueId);
-      return ue?`<span class="ue-tag" style="background:${ue.color}">${ue.nom} coef.${a.coef} <span class="ue-tag-x" onclick="removeAssignment('${m.id}','${ue.id}')">✕</span></span>`:'';
-    }).join('');
-    const opts=S.ues.filter(ue=>!existing.find(a=>a.ueId===ue.id)).map(ue=>`<option value="${ue.id}">${ue.nom}</option>`).join('');
-    return `<div class="mat-ue-assignment">
-      <div style="min-width:130px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px">
-        <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${m.color}"></span>${m.nom}
-      </div>
-      <div style="flex:1">${tags}</div>
-      ${opts?`<div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-        <select id="uesel_${m.id}" style="border:1.5px solid var(--line);border-radius:7px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;background:var(--paper)">
-          <option value="">+ Ajouter UE</option>${opts}
-        </select>
-        <input type="number" id="coefsel_${m.id}" value="1" min="0.5" step="0.5" style="width:60px;border:1.5px solid var(--line);border-radius:7px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;background:var(--paper)">
-        <button class="btn-primary" style="font-size:11px;padding:5px 10px" onclick="addAssignment('${m.id}')">OK</button>
-      </div>`:'<span style="font-size:12px;color:var(--g500)">✓ Dans toutes les UE</span>'}
-    </div>`;
-  }).join('');
-}
- 
-function addAssignment(matiereId){
-  const selEl=document.getElementById('uesel_'+matiereId);
-  const coefEl=document.getElementById('coefsel_'+matiereId);
-  const ueId=selEl.value;
-  const coef=parseFloat(coefEl.value)||1;
-  if(!ueId){toast('Sélectionnez une UE');return;}
-  if(S.assignments.find(a=>a.matiereId===matiereId&&a.ueId===ueId)){toast('Déjà assigné');return;}
-  S.assignments.push({matiereId,ueId,coef});
-  save();renderConfigView();renderUeView();toast('Matière assignée ✓');
-}
- 
-function removeAssignment(matiereId,ueId){
-  S.assignments=S.assignments.filter(a=>!(a.matiereId===matiereId&&a.ueId===ueId));
-  save();renderConfigView();renderUeView();toast('Affectation supprimée');
-}
- 
-// ── Matières CRUD ──
-function openAddMatiere(){document.getElementById('matiereNom').value='';openModal('matiereModal');}
-function saveMatiere(){
-  const nom=document.getElementById('matiereNom').value.trim();
-  if(!nom){toast('Entrez le nom de la matière');return;}
-  const m={id:String(Date.now()),nom,color:S.selectedMatiereColor};
-  S.matieres.push(m);if(!S.notes[m.id])S.notes[m.id]=[];S.selectedMatiere=m.id;
-  save();closeModal('matiereModal');renderAllNotes();toast('Matière créée ✓');
-}
-function deleteMatiere(id){
-  id=String(id);
-  if(!confirm('Supprimer cette matière et toutes ses notes ?'))return;
-  S.matieres=S.matieres.filter(m=>String(m.id)!==id);
-  delete S.notes[id];
-  S.assignments=S.assignments.filter(a=>String(a.matiereId)!==id);
-  if(String(S.selectedMatiere)===id) S.selectedMatiere=S.matieres.length?S.matieres[0].id:null;
-  save();renderAllNotes();toast('Matière supprimée');
-}
- 
-// ── UE CRUD ──
-function openAddUe(){
-  S.editingUeId=null;
-  document.getElementById('ueModalTitle').textContent='Nouvelle UE';
-  document.getElementById('ueNom').value='';document.getElementById('ueCoeff').value='1';
-  openModal('ueModal');
-}
-function editUe(id){
-  const ue=S.ues.find(u=>u.id===id);if(!ue)return;
-  S.editingUeId=id;
-  document.getElementById('ueModalTitle').textContent='Modifier l\'UE';
-  document.getElementById('ueNom').value=ue.nom;document.getElementById('ueCoeff').value=ue.coeff;
-  openModal('ueModal');
-}
-function saveUe(){
-  const nom=document.getElementById('ueNom').value.trim();
-  if(!nom){toast('Entrez le nom de l\'UE');return;}
-  const coeff=parseFloat(document.getElementById('ueCoeff').value)||1;
-  if(S.editingUeId){
-    const ue=S.ues.find(u=>u.id===S.editingUeId);
-    if(ue){ue.nom=nom;ue.coeff=coeff;ue.color=S.selectedUeColor;}
-  } else {
-    S.ues.push({id:String(Date.now()),nom,color:S.selectedUeColor,coeff});
-  }
-  save();closeModal('ueModal');renderAllNotes();toast(S.editingUeId?'UE modifiée ✓':'UE créée ✓');
-}
-function deleteUe(id){
-  if(!confirm('Supprimer cette UE ?'))return;
-  S.ues=S.ues.filter(u=>u.id!==id);
-  S.assignments=S.assignments.filter(a=>a.ueId!==id);
-  save();renderAllNotes();toast('UE supprimée');
-}
- 
-// ── Notes CRUD ──
-function openAddNote(){
-  if(!S.matieres.length){toast('Créez d\'abord une matière');openAddMatiere();return;}
-  if(!S.selectedMatiere)S.selectedMatiere=S.matieres[0].id;
-  document.getElementById('noteLabel').value='';document.getElementById('noteValue').value='';
-  document.getElementById('noteSur').value='20';document.getElementById('noteCoeff').value='1';
-  document.getElementById('noteDate').value=today();
-  openModal('noteModal');
-}
-function saveNote(){
-  const val=parseFloat(document.getElementById('noteValue').value);
-  if(isNaN(val)||val<0){toast('Note invalide');return;}
-  if(!S.selectedMatiere){toast('Sélectionnez une matière');return;}
-  const n={id:String(Date.now()),label:document.getElementById('noteLabel').value.trim()||'Note',value:val,sur:parseFloat(document.getElementById('noteSur').value)||20,coeff:parseFloat(document.getElementById('noteCoeff').value)||1,date:document.getElementById('noteDate').value};
-  if(!S.notes[S.selectedMatiere])S.notes[S.selectedMatiere]=[];
-  S.notes[S.selectedMatiere].push(n);
-  save();closeModal('noteModal');renderAllNotes();toast('Note ajoutée ✓');
-}
-function deleteNote(mid,nid){
-  S.notes[mid]=(S.notes[mid]||[]).filter(n=>n.id!==nid);
-  save();renderAllNotes();toast('Note supprimée');
-}
- 
-// ═══════════════════════════════════════
-// DEVOIRS
-// ═══════════════════════════════════════
-function initCalendar(){S.selectedDate=today();renderCalendar();renderDevoirsList();}
- 
-function renderCalendar(){
-  const now=new Date();
-  const date=new Date(now.getFullYear(),now.getMonth()+S.calMonthOffset,1);
-  const mos=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  document.getElementById('calMonthLabel').textContent=`${mos[date.getMonth()]} ${date.getFullYear()}`;
-  const firstDow=(new Date(date.getFullYear(),date.getMonth(),1).getDay()+6)%7;
-  const lastDay=new Date(date.getFullYear(),date.getMonth()+1,0).getDate();
-  const tod=today();
-  let html='';
-  ['L','M','M','J','V','S','D'].forEach(d=>{html+=`<div class="cal-head">${d}</div>`;});
-  for(let i=0;i<firstDow;i++){
-    const p=new Date(date.getFullYear(),date.getMonth(),0-(firstDow-i-1));
-    html+=`<div class="cal-day other-month"><div class="cal-day-num">${p.getDate()}</div></div>`;
-  }
-  for(let d=1;d<=lastDay;d++){
-    const ds=`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const isToday=ds===tod,isSel=ds===S.selectedDate;
-    const devs=S.devoirs.filter(dv=>dv.date===ds&&!dv.done);
-    const dots=devs.slice(0,3).map(dv=>`<div class="cal-dot" style="background:${dv.color||URGC[dv.urgence]}"></div>`).join('');
-    html+=`<div class="cal-day${isToday?' today':''}${isSel?' selected':''}" onclick="selectCalDate('${ds}')"><div class="cal-day-num">${d}</div>${dots}</div>`;
-  }
-  document.getElementById('calGrid').innerHTML=html;
-  renderSelectedDevoirs();
-}
- 
-function changeCalMonth(d){S.calMonthOffset+=d;renderCalendar();}
-function selectCalDate(ds){S.selectedDate=ds;renderCalendar();}
- 
-function renderSelectedDevoirs(){
-  if(!S.selectedDate)return;
-  const[y,m,d]=S.selectedDate.split('-');
-  document.getElementById('selectedDateLabel').textContent=`${d}/${m}/${y}`;
-  const devs=S.devoirs.filter(dv=>dv.date===S.selectedDate);
-  document.getElementById('devoirListSelected').innerHTML=devs.length?devs.map(dv=>devoirHtml(dv)).join(''):'<li class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><polyline points="20 6 9 17 4 12"/></svg></div><p>Aucun devoir</p></li>';
-}
- 
-function renderDevoirsList(){
-  const tod=today();
-  const up=S.devoirs.filter(d=>d.date>=tod).sort((a,b)=>a.date.localeCompare(b.date));
-  document.getElementById('devoirListAll').innerHTML=up.length?up.map(d=>devoirHtml(d)).join(''):'<div class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><polyline points="20 6 9 17 4 12"/></svg></div><p>Aucun devoir</p></div>';
-  updateDevoirsBadge();
-}
- 
-function devoirHtml(dv){
-  const tod=today();const isUrgent=dv.date<=tod&&!dv.done;
-  const[y,m,d]=dv.date.split('-');
-  const c=dv.color||URGC[dv.urgence];
-  return `<li class="dv-full${dv.done?' done':''}" style="border-left:4px solid ${c}"><div class="dv-check${dv.done?' checked':''}" onclick="toggleDevoir('${dv.id}')">${dv.done?'✓':''}</div><div style="flex:1"><div class="dv-tag" style="color:${c}">${dv.matiere}</div><div class="dv-title">${dv.desc}</div><div class="dv-due${isUrgent?' urgent':''}">Pour le ${d}/${m}/${y}</div></div><div style="display:flex;gap:3px;align-self:center"><button style="background:var(--ora);color:#fff;border:none;border-radius:5px;padding:1px 6px;font-size:10px;cursor:pointer" onclick="openDevoirColorPicker('${dv.id}')">✎</button><button class="btn-danger" style="font-size:10px;padding:3px 7px" onclick="deleteDevoir('${dv.id}')">✕</button></div></li>`;
-}
- 
-function toggleDevoir(id){const dv=S.devoirs.find(d=>d.id===id);if(dv){dv.done=!dv.done;save();renderCalendar();renderDevoirsList();renderDashboard();}}
-function deleteDevoir(id){S.devoirs=S.devoirs.filter(d=>d.id!==id);save();renderCalendar();renderDevoirsList();renderDashboard();updateDevoirsBadge();toast('Devoir supprimé');}
-function saveDevoir(){
-  const mat=document.getElementById('devoirMatiere').value.trim();
-  const desc=document.getElementById('devoirDesc').value.trim();
-  const date=document.getElementById('devoirDate').value;
-  if(!mat||!desc||!date){toast('Remplissez tous les champs');return;}
-  S.devoirs.push({id:String(Date.now()),matiere:mat,desc,date,urgence:document.getElementById('devoirUrgence').value,color:S.selectedDevoirColor,done:false});
-  save();closeModal('devoirModal');renderCalendar();renderDevoirsList();renderDashboard();updateDevoirsBadge();toast('Devoir ajouté ✓');
-}
-function updateDevoirsBadge(){
-  const tod=today();const count=S.devoirs.filter(d=>!d.done&&d.date>=tod).length;
-  const b=document.getElementById('devoirsBadge');b.textContent=count;b.style.display=count>0?'':'none';
-  document.getElementById('stat-devoirs').textContent=count;
-}
- 
-// ═══════════════════════════════════════
-// DASHBOARD
-// ═══════════════════════════════════════
-function renderDashboard(){
-  const now=new Date(),todayDow=(now.getDay()+6)%7;
-  const tc=S.courses.filter(c=>c.recurrence==='weekly'?c.day===todayDow:(c.day===todayDow&&c.weekOffset===S.currentWeekOffset)).sort((a,b)=>a.start.localeCompare(b.start));
-  document.getElementById('stat-cours').textContent=tc.length;
-  const tl=document.getElementById('todayCourses');
-  tl.innerHTML=tc.length?tc.map(c=>`<li class="today-item"><span class="course-dot" style="background:${c.color}"></span><span class="course-time">${c.start}–${c.end}</span><div><div class="course-name">${c.matiere}</div><div class="course-room">${c.room||''} ${c.teacher?'• '+c.teacher:''}</div></div></li>`).join(''):'<li class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><path d="M22 12h-6l-2 3H10l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg></div><p>Aucun cours</p></li>';
-  const tod=today();
-  const up=S.devoirs.filter(d=>!d.done&&d.date>=tod).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,4);
-  const dd=document.getElementById('dashDevoirs');
-  dd.innerHTML=up.length?up.map(dv=>{const[y,m,d]=dv.date.split('-');return `<div class="dv-dash"><div class="dv-bar" style="background:${dv.color||URGC[dv.urgence]}"></div><div style="flex:1"><div class="dv-mat">${dv.matiere}</div><div class="dv-desc">${dv.desc}</div><div class="dv-date">Le ${d}/${m}/${y}</div></div></div>`;}).join(''):'<div class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><polyline points="20 6 9 17 4 12"/></svg></div><p>Aucun devoir</p></div>';
-  // Moyennes UE
-  const dn=document.getElementById('dashNotes');
-  if(!S.ues.length){dn.innerHTML='<div class="empty"><div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-light)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg></div><p>Créez vos UE</p></div>';return;}
-  dn.innerHTML=S.ues.map(ue=>{
-    const avg=computeUeAvg(ue.id);
-    const cls=avgClass(avg);
-    return `<div class="note-mini"><span class="note-mini-mat"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${ue.color}"></span>${ue.nom}</span><span class="note-mini-avg ${cls}">${fmtAvg(avg)}</span></div>`;
-  }).join('');
-  const gen=computeGenAvg();
-  document.getElementById('stat-moyenne').textContent=gen!==null?fmtAvg(gen)+'/20':'—';
-}
- 
-function headerActionFn(){}
- 
-// ═══════════════════════════════════════
-// MODALS / UTILS
-// ═══════════════════════════════════════
-function openModal(id){document.getElementById(id).classList.add('show');}
-function closeModal(id){document.getElementById(id).classList.remove('show');}
-document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show');});});
- 
-function setupColorPresets(containerId,stateKey){
-  document.getElementById(containerId).querySelectorAll('.color-preset').forEach(el=>{
-    el.addEventListener('click',()=>{
-      document.getElementById(containerId).querySelectorAll('.color-preset').forEach(x=>x.classList.remove('active'));
-      el.classList.add('active');S[stateKey]=el.dataset.color;
-    });
-  });
-}
- 
- 
-// ── Edit note ──
-let _editMid = null, _editNid = null;
-function openEditNote(mid, nid) {
-  const n = (S.notes[mid] || []).find(x => x.id === nid);
-  if (!n) return;
-  _editMid = mid; _editNid = nid;
-  document.getElementById('editNoteLabel').value = n.label || '';
-  document.getElementById('editNoteValue').value = n.value;
-  document.getElementById('editNoteSur').value = n.sur;
-  document.getElementById('editNoteCoeff').value = n.coeff;
-  document.getElementById('editNoteDate').value = n.date || '';
-  openModal('editNoteModal');
-}
-function confirmEditNote() {
-  const val = parseFloat(document.getElementById('editNoteValue').value);
-  if (isNaN(val) || val < 0) { toast('Note invalide'); return; }
-  const ns = S.notes[_editMid] || [];
-  const n = ns.find(x => x.id === _editNid);
-  if (!n) return;
-  n.label = document.getElementById('editNoteLabel').value.trim() || 'Note';
-  n.value = val;
-  n.sur   = parseFloat(document.getElementById('editNoteSur').value) || 20;
-  n.coeff = parseFloat(document.getElementById('editNoteCoeff').value) || 1;
-  n.date  = document.getElementById('editNoteDate').value;
-  save(); closeModal('editNoteModal'); renderAllNotes(); toast('Note modifiée ✓');
-}
- 
- 
-// ── Edit matiere ──
-let _editMatiereId = null;
-let _editMatiereColor = '#3a8c3a';
- 
-function setupEditMatiereColorPresets() {
-  document.getElementById('editMatiereColorPresets').querySelectorAll('.color-preset').forEach(el => {
-    el.addEventListener('click', () => {
-      document.getElementById('editMatiereColorPresets').querySelectorAll('.color-preset').forEach(x => x.classList.remove('active'));
-      el.classList.add('active');
-      _editMatiereColor = el.dataset.color;
-    });
-  });
-}
- 
-function openEditMatiere(id) {
-  const m = S.matieres.find(x => String(x.id) === String(id));
-  if (!m) return;
-  _editMatiereId = String(id);
-  _editMatiereColor = m.color;
-  document.getElementById('editMatiereNom').value = m.nom;
-  document.querySelectorAll('#editMatiereColorPresets .color-preset').forEach(el => {
-    el.classList.toggle('active', el.dataset.color === m.color);
-  });
-  openModal('editMatiereModal');
-}
- 
-function confirmEditMatiere() {
-  const nom = document.getElementById('editMatiereNom').value.trim();
-  if (!nom) { toast('Entrez le nom de la matière'); return; }
-  const m = S.matieres.find(x => String(x.id) === _editMatiereId);
-  if (!m) return;
-  m.nom = nom;
-  m.color = _editMatiereColor;
-  save(); closeModal('editMatiereModal'); renderAllNotes(); toast('Matière modifiée ✓');
-}
- 
-let _editDevoirColorId = null;
-let _editDevoirColor = '#e63946';
-let _devoirEditColorSetup = false;
- 
-function openDevoirColorPicker(id){
-  const dv = S.devoirs.find(d => d.id === id);
-  if(!dv) return;
-  _editDevoirColorId = id;
-  _editDevoirColor = dv.color || URGC[dv.urgence];
-  if(!_devoirEditColorSetup){
-    document.getElementById('devoirEditColorPresets').querySelectorAll('.color-preset').forEach(el => {
-      el.addEventListener('click', () => {
-        document.getElementById('devoirEditColorPresets').querySelectorAll('.color-preset').forEach(x => x.classList.remove('active'));
-        el.classList.add('active');
-        _editDevoirColor = el.dataset.color;
-      });
-    });
-    _devoirEditColorSetup = true;
-  }
-  document.querySelectorAll('#devoirEditColorPresets .color-preset').forEach(el => {
-    el.classList.toggle('active', el.dataset.color === _editDevoirColor);
-  });
-  openModal('devoirColorModal');
-}
- 
-function confirmDevoirColor(){
-  const dv = S.devoirs.find(d => d.id === _editDevoirColorId);
-  if(!dv) return;
-  dv.color = _editDevoirColor;
-  save(); closeModal('devoirColorModal'); renderCalendar(); renderDevoirsList(); renderDashboard(); toast('Couleur modifiée ✓');
-}
- 
-let toastTimer;
-function toast(msg){
-  const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
-  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2500);
-}
-</script>
-</body>
-</html>
- 
 
+function duplicateWeekType(){
+  // Convertit tous les cour
